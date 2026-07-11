@@ -16,6 +16,20 @@ Your idea + industry + audience + budget + timeline + team size
 
 Built with Flask, the Groq API, HTML, CSS, and JavaScript.
 
+## 📸 Screenshots
+
+### 🏠 Landing Page
+
+![Landing Page](screenshots/home.png)
+
+### 🚀 Startup Generator
+
+![Generator](screenshots/generate.png)
+
+### 📊 Generated Startup Blueprint
+
+![Result](screenshots/result.png)
+
 ## Setup
 
 1. **Get a free Groq API key**
