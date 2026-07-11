@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env
+
+# VS Code
+.vscode/
+
+# Generated Files
+exports/
+*.pdf
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db

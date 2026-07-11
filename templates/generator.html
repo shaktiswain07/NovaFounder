@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block title %}Describe your idea - NovaFounder{% endblock %}
+{% block bodyclass %}page-generator{% endblock %}
+{% block content %}
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="{{ url_for('home') }}" class="brand">
+      <span class="brand-mark">✦</span> NovaFounder
+    </a>
+    <div class="nav-links"></div>
+    <a href="{{ url_for('home') }}" class="btn btn-ghost btn-sm">← Back home</a>
+  </div>
+</nav>
+
+<main class="briefing">
+  <div class="briefing-card">
+    <p class="eyebrow">MISSION BRIEFING</p>
+    <h1 class="briefing-title">Tell us what you're building</h1>
+    <p class="briefing-sub">Six inputs. The more specific your idea, the sharper the dossier.</p>
+
+    {% if error %}
+    <div class="alert-error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('generate') }}" id="generatorForm" class="briefing-form">
+
+      <div class="field field-full">
+        <label for="idea">Your raw idea</label>
+        <textarea name="idea" id="idea" rows="3" placeholder="e.g. An AI that reviews rental leases and flags unfair clauses for tenants" required>{{ form.idea if form else '' }}</textarea>
+      </div>
+
+      <div class="field">
+        <label for="industry">Industry</label>
+        <select name="industry" id="industry" required>
+          <option value="" disabled {% if not form %}selected{% endif %}>Select an industry</option>
+          <option value="AI / SaaS">AI / SaaS</option>
+          <option value="FinTech">FinTech</option>
+          <option value="HealthTech">HealthTech</option>
+          <option value="EdTech">EdTech</option>
+          <option value="E-commerce / Retail">E-commerce / Retail</option>
+          <option value="PropTech">PropTech</option>
+          <option value="Climate / Sustainability">Climate / Sustainability</option>
+          <option value="Consumer Social">Consumer Social</option>
+          <option value="Developer Tools">Developer Tools</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="audience">Target audience</label>
+        <input type="text" name="audience" id="audience" placeholder="e.g. First-time renters in the US" value="{{ form.audience if form else '' }}" />
+      </div>
+
+      <div class="field">
+        <label for="budget">Budget available</label>
+        <select name="budget" id="budget">
+          <option value="Under $1,000 (bootstrapped)">Under $1,000 (bootstrapped)</option>
+          <option value="$1,000 - $5,000" selected>$1,000 - $5,000</option>
+          <option value="$5,000 - $20,000">$5,000 - $20,000</option>
+          <option value="$20,000 - $100,000">$20,000 - $100,000</option>
+          <option value="$100,000+ (funded)">$100,000+ (funded)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="timeline">Timeline to launch</label>
+        <select name="timeline" id="timeline">
+          <option value="2 Weeks">2 Weeks</option>
+          <option value="1 Month">1 Month</option>
+          <option value="3 Months" selected>3 Months</option>
+          <option value="6 Months">6 Months</option>
+          <option value="1 Year">1 Year</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="team_size">Team size</label>
+        <select name="team_size" id="team_size">
+          <option value="Solo Founder" selected>Solo Founder</option>
+          <option value="2-3 Co-founders">2-3 Co-founders</option>
+          <option value="Small Team (4-10)">Small Team (4-10)</option>
+          <option value="10+">10+</option>
+        </select>
+      </div>
+
+      <div class="briefing-actions">
+        <button type="submit" class="btn btn-primary btn-lg" id="generateBtn">Generate My Venture →</button>
+      </div>
+    </form>
+  </div>
+</main>
+
+{% endblock %}

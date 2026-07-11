@@ -1,0 +1,196 @@
+{% extends "layout.html" %}
+{% block title %}{{ s.startup_name }} - NovaFounder{% endblock %}
+{% block bodyclass %}page-result{% endblock %}
+{% block content %}
+
+<nav class="topnav topnav-result">
+  <div class="topnav-inner">
+    <a href="{{ url_for('home') }}" class="brand">
+      <span class="brand-mark">✦</span> NovaFounder
+    </a>
+    <div class="result-identity">
+      <span class="result-name">{{ s.startup_name }}</span>
+      <span class="result-tagline">{{ s.tagline }}</span>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-ghost btn-sm" id="exportPdfBtn">Export PDF</button>
+      <a href="{{ url_for('generator') }}" class="btn btn-primary btn-sm">New Idea</a>
+    </div>
+  </div>
+</nav>
+
+<div class="dashboard">
+
+  <aside class="sidenav" id="sidenav">
+    <div class="sidenav-group">
+      <p class="sidenav-heading">🎯 The Vision</p>
+      <a href="#executive-summary" class="sidenav-link">Executive Summary</a>
+      <a href="#problem" class="sidenav-link">Problem Statement</a>
+      <a href="#solution" class="sidenav-link">Solution</a>
+      <a href="#target-users" class="sidenav-link">Target Users</a>
+    </div>
+    <div class="sidenav-group">
+      <p class="sidenav-heading">🧭 The Market</p>
+      <a href="#competitors" class="sidenav-link">Competitor Analysis</a>
+      <a href="#revenue" class="sidenav-link">Revenue Model</a>
+      <a href="#gtm" class="sidenav-link">Go-to-Market</a>
+    </div>
+    <div class="sidenav-group">
+      <p class="sidenav-heading">🛠️ The Build</p>
+      <a href="#mvp" class="sidenav-link">MVP Features</a>
+      <a href="#stack" class="sidenav-link">Tech Stack</a>
+      <a href="#database" class="sidenav-link">Database Design</a>
+      <a href="#apis" class="sidenav-link">API Suggestions</a>
+      <a href="#folders" class="sidenav-link">Folder Structure</a>
+      <a href="#roadmap" class="sidenav-link">Roadmap</a>
+    </div>
+    <div class="sidenav-group">
+      <p class="sidenav-heading">💸 The Ask</p>
+      <a href="#cost" class="sidenav-link">Cost Estimation</a>
+      <a href="#pitch" class="sidenav-link">Investor Pitch</a>
+      <a href="#resume" class="sidenav-link">Resume Description</a>
+    </div>
+  </aside>
+
+  <main class="dossier" id="dossierContent">
+
+    <p class="cluster-tag">🎯 THE VISION</p>
+
+    <section class="card" id="executive-summary">
+      <h2>📝 Executive Summary</h2>
+      <p>{{ s.executive_summary }}</p>
+    </section>
+
+    <section class="card" id="problem">
+      <h2>🎯 Problem Statement</h2>
+      <p>{{ s.problem_statement }}</p>
+    </section>
+
+    <section class="card" id="solution">
+      <h2>💡 Solution</h2>
+      <p>{{ s.solution }}</p>
+    </section>
+
+    <section class="card" id="target-users">
+      <h2>👥 Target Users</h2>
+      <ul class="bullet-list">
+        {% for u in s.target_users %}<li>{{ u }}</li>{% endfor %}
+      </ul>
+    </section>
+
+    <p class="cluster-tag">🧭 THE MARKET</p>
+
+    <section class="card" id="competitors">
+      <h2>📊 Competitor Analysis</h2>
+      <div class="competitor-grid">
+        {% for c in s.competitor_analysis %}
+        <div class="competitor-card">
+          <h3>{{ c.name }}</h3>
+          <p>{{ c.description }}</p>
+          <p class="competitor-gap"><span>Gap:</span> {{ c.gap }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="card" id="revenue">
+      <h2>💰 Revenue Model</h2>
+      <ul class="bullet-list">
+        {% for r in s.revenue_model %}<li>{{ r }}</li>{% endfor %}
+      </ul>
+    </section>
+
+    <section class="card" id="gtm">
+      <h2>📈 Go-to-Market Strategy</h2>
+      <ul class="bullet-list">
+        {% for g in s.go_to_market %}<li>{{ g }}</li>{% endfor %}
+      </ul>
+    </section>
+
+    <p class="cluster-tag">🛠️ THE BUILD</p>
+
+    <section class="card" id="mvp">
+      <h2>⭐ MVP Features</h2>
+      <ul class="bullet-list">
+        {% for f in s.mvp_features %}<li>{{ f }}</li>{% endfor %}
+      </ul>
+    </section>
+
+    <section class="card" id="stack">
+      <h2>🛠️ Tech Stack</h2>
+      <div class="stack-grid">
+        {% for group, techs in s.tech_stack.items() %}
+        <div class="stack-group">
+          <p class="stack-group-label">{{ group.replace('_', ' ')|upper }}</p>
+          <div class="chip-row">
+            {% for t in techs %}<span class="chip">{{ t }}</span>{% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="card" id="database">
+      <h2>🗄️ Database Design</h2>
+      <pre class="code-box">{{ s.database_design }}</pre>
+    </section>
+
+    <section class="card" id="apis">
+      <h2>🔌 API Suggestions</h2>
+      <ul class="bullet-list">
+        {% for a in s.api_suggestions %}<li>{{ a }}</li>{% endfor %}
+      </ul>
+    </section>
+
+    <section class="card" id="folders">
+      <h2>📁 Recommended Folder Structure</h2>
+      <pre class="code-box tree">{% for line in s.folder_structure %}{{ line }}
+{% endfor %}</pre>
+    </section>
+
+    <section class="card" id="roadmap">
+      <h2>📅 Development Roadmap</h2>
+      <div class="roadmap-list">
+        {% for step in s.roadmap %}
+        <div class="roadmap-step">
+          <span class="roadmap-phase">{{ step.phase }}</span>
+          <p>{{ step.tasks }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <p class="cluster-tag">💸 THE ASK</p>
+
+    <section class="card" id="cost">
+      <h2>💸 Cost Estimation</h2>
+      <table class="cost-table">
+        <thead><tr><th>Item</th><th>Estimate</th></tr></thead>
+        <tbody>
+          {% for item in s.cost_estimation['items'] %}
+          <tr><td>{{ item.item }}</td><td>{{ item.estimate }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="cost-total">Total estimate: <span>{{ s.cost_estimation.total_estimate }}</span></p>
+    </section>
+
+    <section class="card" id="pitch">
+      <h2>🎤 Investor Pitch</h2>
+      <blockquote class="pitch-box" id="pitchText">{{ s.investor_pitch }}</blockquote>
+      <button class="btn btn-ghost btn-sm copy-btn" data-copy-target="pitchText">Copy pitch</button>
+    </section>
+
+    <section class="card" id="resume">
+      <h2>📄 Resume Project Description</h2>
+      <p class="resume-box" id="resumeText">{{ s.resume_description }}</p>
+      <button class="btn btn-ghost btn-sm copy-btn" data-copy-target="resumeText">Copy description</button>
+    </section>
+
+  </main>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+{% endblock %}

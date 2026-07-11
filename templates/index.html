@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+{% block bodyclass %}page-landing{% endblock %}
+{% block content %}
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="{{ url_for('home') }}" class="brand">
+      <span class="brand-mark">✦</span> NovaFounder
+    </a>
+    <div class="nav-links">
+      <a href="#dossier">The Dossier</a>
+      <a href="#how-it-works">How it works</a>
+    </div>
+    <a href="{{ url_for('generator') }}" class="btn btn-primary btn-sm">Launch the console →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">FOR FOUNDERS WITH A RAW IDEA AND NO TIME TO WASTE</p>
+    <h1 class="hero-title">
+      Feed it one sentence.<br>
+      It hands back <span class="nova-text">a venture.</span>
+    </h1>
+    <p class="hero-sub">
+      Describe your idea in plain words. NovaFounder drafts your positioning, market
+      analysis, tech plan, budget, and investor pitch — grounded in the budget, timeline,
+      and team size you actually have, not generic startup-advice filler.
+    </p>
+    <div class="hero-actions">
+      <a href="{{ url_for('generator') }}" class="btn btn-primary btn-lg">Launch the console →</a>
+      <a href="#dossier" class="btn btn-ghost btn-lg">See what you get</a>
+    </div>
+  </div>
+
+  <div class="readout" aria-hidden="true">
+    <div class="readout-head">
+      <span class="readout-dot"></span>
+      <span class="readout-dot"></span>
+      <span class="readout-dot"></span>
+      <span class="readout-title">sample transmission</span>
+    </div>
+    <div class="readout-body">
+      <div class="readout-input">
+        <span class="readout-label">RAW IDEA</span>
+        <p>"An AI that reviews rental leases and flags unfair clauses for tenants."</p>
+      </div>
+      <div class="readout-arrow">→</div>
+      <div class="readout-output">
+        <span class="readout-label">DOSSIER OUTPUT</span>
+        <div class="readout-chips">
+          <span class="chip chip-name">LeaseGuard</span>
+          <span class="chip">Freemium + $9/mo Pro</span>
+          <span class="chip">React · FastAPI · Postgres</span>
+          <span class="chip">Est. cost: $1,200–$2,400</span>
+          <span class="chip">MVP in 6 weeks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="dossier-section" id="dossier">
+  <p class="section-eyebrow">WHAT YOU GET</p>
+  <h2 class="section-title">A founder's dossier, in four parts</h2>
+  <p class="section-sub">Seventeen outputs, organized the way a real business plan is — not a wall of headings.</p>
+
+  <div class="cluster-grid">
+
+    <div class="cluster-card">
+      <div class="cluster-icon">🎯</div>
+      <h3 class="cluster-name">The Vision</h3>
+      <p class="cluster-desc">What it is, who it's for, and why it matters.</p>
+      <ul class="cluster-list">
+        <li>🚀 Startup Name</li>
+        <li>📝 Executive Summary</li>
+        <li>🎯 Problem Statement</li>
+        <li>💡 Solution</li>
+        <li>👥 Target Users</li>
+      </ul>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-icon">🧭</div>
+      <h3 class="cluster-name">The Market</h3>
+      <p class="cluster-desc">Where the money comes from, and who you're up against.</p>
+      <ul class="cluster-list">
+        <li>📊 Competitor Analysis</li>
+        <li>💰 Revenue Model</li>
+        <li>📈 Go-to-Market Strategy</li>
+      </ul>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-icon">🛠️</div>
+      <h3 class="cluster-name">The Build</h3>
+      <p class="cluster-desc">Exactly what to build first, and with what.</p>
+      <ul class="cluster-list">
+        <li>⭐ MVP Features</li>
+        <li>🛠️ Tech Stack</li>
+        <li>🗄️ Database Design</li>
+        <li>🔌 API Suggestions</li>
+        <li>📁 Folder Structure</li>
+        <li>📅 Development Roadmap</li>
+      </ul>
+    </div>
+
+    <div class="cluster-card">
+      <div class="cluster-icon">💸</div>
+      <h3 class="cluster-name">The Ask</h3>
+      <p class="cluster-desc">What it costs, and how you'd say it out loud.</p>
+      <ul class="cluster-list">
+        <li>💸 Cost Estimation</li>
+        <li>🎤 Investor Pitch</li>
+        <li>📄 Resume Project Description</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="steps-section" id="how-it-works">
+  <p class="section-eyebrow">HOW IT WORKS</p>
+  <h2 class="section-title">Three steps, no signup wall</h2>
+
+  <div class="steps-grid">
+    <div class="step">
+      <span class="step-num">01</span>
+      <h3 class="step-title">Describe your idea</h3>
+      <p class="step-desc">Six quick inputs — idea, industry, audience, budget, timeline, team size.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <h3 class="step-title">NovaFounder drafts the dossier</h3>
+      <p class="step-desc">Groq-powered generation, structured into the four parts above, in seconds.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <h3 class="step-title">Refine and export</h3>
+      <p class="step-desc">Read it as a dashboard, copy the investor pitch, export the whole thing to PDF.</p>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <h2>Have an idea sitting in your notes app?</h2>
+    <a href="{{ url_for('generator') }}" class="btn btn-primary btn-lg">Launch the console →</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>✦ NovaFounder</span>
+  <span class="footer-note">Built with Flask + Groq. A drafting tool, not a guarantee — validate before you build.</span>
+</footer>
+
+{% endblock %}
